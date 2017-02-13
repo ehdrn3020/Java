@@ -14,7 +14,7 @@ class Random_function {
 		for(int i=0;i<10;i++){
 			ranval = ran.nextInt(A-B+1);
 			ranval += B;
-			System.out.println(ranval);
+			System.out.println(ranval);  //random number of A to B
 		}
 	}
 }
