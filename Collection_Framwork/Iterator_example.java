@@ -10,7 +10,7 @@ public class Iterator_example {
 			list.add("Second");
 			list.add("Third");
 			
-			Iterator<String> it = list.iterator();
+			Iterator<String> it = list.iterator(); //list.descendingIterator() -> descending order
 			while(it.hasNext()){
 				String str = it.next();
 				System.out.println(str);
