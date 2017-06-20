@@ -1,3 +1,6 @@
+#Other Example is here 
+#http://www.codejava.net/java-se/networking/ftp (upload/download etc)
+
 package kr.co.bigster.aistockrobot.dataRefine;
 
 import java.io.BufferedOutputStream;
