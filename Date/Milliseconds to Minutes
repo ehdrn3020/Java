@@ -1,0 +1,9 @@
+###
+
+ Date nowTime = new Date();
+ Date accessedTime = new Date(session.getLastAccessedTime());
+ //Milliseconds = 1/1000(s)
+ int minutes = (int) ((nowTime.getTime()-accessedTime.getTime())/(1000*60)%60);  
+ System.out.println("Access Time(mm): "+minutes);
+       
+       
