@@ -1,0 +1,205 @@
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.suwon.anal.dao.LocalPublicStaticVO;
+import org.suwon.anal.dao.YearPublicStaticVO;
+import org.suwon.freevoc.utils.TimeUtil;
+
+
+public class Statics02 {
+	public static final void main(String[] args) {
+		/*Statistic Data*/
+		HashMap<Integer , YearPublicStaticVO> map1 = YearPublicStatic();
+	}
+    
+	public static Element request( String url ) {
+        
+        Element body = null;
+        
+        try {
+            System.out.println("REQUEST URL=" + url);            
+            Document doc = Jsoup.connect( url ).ignoreContentType(true).get();   
+
+            String resultMsg = doc.getElementsByTag("resultMsg").text();
+            if( "SUWON OPENAPI SERVICE".equals(resultMsg)  ) {
+                body = doc.body();
+            } else {
+                System.out.println( "Respone ERROR resultMsg=" + resultMsg  );
+                body = null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return body;
+    }
+	
+	public static HashMap<Integer , YearPublicStaticVO> YearPublicStatic(){
+		// Request URL
+		String url = String.format("%s/%s&serviceKey=%s&baseYY=%s&pageNo=1&numOfRows=100&apiType=xml", StaticsDef.DATA_SUWON_GO_URL, StaticsDef.YYPP, StaticsDef.SERVICE_KEY, baseYY);
+
+		String serviceKey = "a8272b5fd8cd4e7ab28a3d37a379c273171229095140";
+		String url = "http://data.suwon.go.kr/suwon/openapi/service/getDataList.api?serviceId=yypp&serviceKey="
+				+ serviceKey + "&pageNo=1&numOfRows=100&baseYY=2015";*/
+		
+		Element body = request(url);
+		if (null == body) {
+			System.err.println("Body Null Error");
+		}
+
+		HashMap<Integer, YearPublicStaticVO> map = new HashMap<Integer, YearPublicStaticVO>();
+		Elements itemElms = body.getElementsByTag("item");
+		int size = itemElms.size();
+		System.out.println("size=" + size);
+
+		for (int idx = 0; idx < size; idx++) {
+
+			YearPublicStaticVO yearPublicStaticVO = new YearPublicStaticVO();
+			Element elm = itemElms.get(idx);
+
+			yearPublicStaticVO.addCategorySeqNo(Integer.parseInt(elm.getElementsByTag("categorySeqNo").text()));
+			yearPublicStaticVO.addBaseMonth(elm.getElementsByTag("baseMonth").text());
+			yearPublicStaticVO.addBaseOrderNo(Integer.parseInt(elm.getElementsByTag("baseOrderNo").text()));
+			yearPublicStaticVO.addSeqNo(Integer.parseInt(elm.getElementsByTag("seqNo").text()));
+			yearPublicStaticVO.addBaseSeqNo(Integer.parseInt(elm.getElementsByTag("baseSeqNo").text()));
+			yearPublicStaticVO.addCategorySeqNo(Integer.parseInt(elm.getElementsByTag("orderNo").text()));
+			yearPublicStaticVO.addCol1(elm.getElementsByTag("col1").text());
+			yearPublicStaticVO.addCol2(elm.getElementsByTag("col2").text());
+			yearPublicStaticVO.addCol3(elm.getElementsByTag("col3").text());
+			yearPublicStaticVO.addCol4(elm.getElementsByTag("col4").text());
+			yearPublicStaticVO.addCol5(elm.getElementsByTag("col5").text());
+			yearPublicStaticVO.addCol6(elm.getElementsByTag("col6").text());
+			yearPublicStaticVO.addCol7(elm.getElementsByTag("col7").text());
+
+			map.put(idx, yearPublicStaticVO);
+		}
+		return map;
+		/*
+		 * Collection<YearPublicStaticVO> collect = map.values();
+		 * for(YearPublicStaticVO yearPublicStaticVO : collect ) {
+		 * System.out.println("00="+yearPublicStaticVO.toString() );
+	   * }
+		 */
+	}	
+}
+
+
+### VO ###
+public class YearPublicStaticVO {
+	
+	private Integer categorySeqNo=0;
+	
+	private String baseMonth="";
+	
+	private Integer baseOrderNo=0;
+	
+	private Integer seqNo=0;
+	
+	private Integer baseSeqNo=0;
+	
+	private Integer orderNo=0;
+	
+	private String col1="";
+	
+	private String col2="";
+	
+	private String col3="";
+	
+	private String col4="";
+	
+	private String col5="";
+	
+	private String col6="";
+
+	private String col7="";
+	
+	public Integer getCategorySeqNo() {
+		return categorySeqNo;
+	}
+	public void addCategorySeqNo(Integer categorySeqNo) {
+		this.categorySeqNo = categorySeqNo;
+	}
+	public String getBaseMonth() {
+		return baseMonth;
+	}
+	public void addBaseMonth(String baseMonth) {
+		this.baseMonth = baseMonth;
+	}
+	public Integer getBaseOrderNo() {
+		return baseOrderNo;
+	}
+	public void addBaseOrderNo(Integer baseOrderNo) {
+		this.baseOrderNo = baseOrderNo;
+	}
+	public Integer getSeqNo() {
+		return seqNo;
+	}
+	public void addSeqNo(Integer seqNo) {
+		this.seqNo = seqNo;
+	}
+	public Integer getBaseSeqNo() {
+		return baseSeqNo;
+	}
+	public void addBaseSeqNo(Integer baseSeqNo) {
+		this.baseSeqNo = baseSeqNo;
+	}
+	public Integer getOrderNo() {
+		return orderNo;
+	}
+	public void addOrderNo(Integer orderNo) {
+		this.orderNo = orderNo;
+	}
+	public String getCol1() {
+		return col1;
+	}
+	public void addCol1(String col1) {
+		this.col1 = col1;
+	}
+	public String getCol2() {
+		return col2;
+	}
+	public void addCol2(String col2) {
+		this.col2 = col2;
+	}
+	public String getCol3() {
+		return col3;
+	}
+	public void addCol3(String col3) {
+		this.col3 = col3;
+	}
+	public String getCol4() {
+		return col4;
+	}
+	public void addCol4(String col4) {
+		this.col4 = col4;
+	}
+	public String getCol5() {
+		return col5;
+	}
+	public void addCol5(String col5) {
+		this.col5 = col5;
+	}
+	public String getCol6() {
+		return col6;
+	}
+	public void addCol6(String col6) {
+		this.col6 = col6;
+	}
+	public String getCol7() {
+		return col7;
+	}
+	public void addCol7(String col7) {
+		this.col7 = col7;
+	}
+	@Override
+	public String toString() {
+		return "YearPublicStatic [categorySeqNo=" + categorySeqNo + ", baseMonth=" + baseMonth + ", baseOrderNo="
+				+ baseOrderNo + ", seqNo=" + seqNo + ", baseSeqNo=" + baseSeqNo + ", orderNo=" + orderNo + ", col1="
+				+ col1 + ", col2=" + col2 + ", col3=" + col3 + ", col4=" + col4 + ", col5=" + col5 + ", col6=" + col6
+				+ ", col7=" + col7 + "]";
+	}
+}
