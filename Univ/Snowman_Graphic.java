@@ -44,19 +44,19 @@ class Mypanel extends JPanel {
 		g2.drawLine(440, 290, 470, 290);
 		g2.drawLine(440, 290, 470, 310);
 		g2.drawLine(440, 290, 460, 330);
-		// ´«»ç¶÷ ¿Ş¼Õ
+		// ëˆˆì‚¬ëŒ ì™¼ì†
 		q.setCurve(300, 350, 240, 400, 250, 450);
 		((Graphics2D) g2).draw(q);
 		q.setCurve(300, 350, 300, 430, 250, 450);
 		((Graphics2D) g2).draw(q);
 		g2.drawRect(150, 450, 100, 50);
-		// ´«»ç¶÷ ¿À¸¥ÂÊ ´Ù¸®
+		// ëˆˆì‚¬ëŒ ì˜¤ë¥¸ìª½ ë‹¤ë¦¬
 		q.setCurve(300, 350, 350, 390, 350, 450);
 		((Graphics2D) g2).draw(q);
 		q.setCurve(300, 350, 300, 430, 350, 450);
 		((Graphics2D) g2).draw(q);
 		g2.drawRect(350, 450, 100, 50);
-		// ´«»ç¶÷ ¿ŞÂÊ ´Ù¸®
+		// ëˆˆì‚¬ëŒ ì™¼ìª½ ë‹¤ë¦¬
 	}
 }
 
