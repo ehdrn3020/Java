@@ -93,8 +93,8 @@ class postG extends Student // postgraduate class define.
 	private String type; // TA type.
 	private double rate; // scholarship rate.
 
-	public postG(String name, int num, String major, int grade, double score, String type, double rate) // »ı¼ºÀÚ
-																									// Á¤ÀÇ.
+	public postG(String name, int num, String major, int grade, double score, String type, double rate) // Â»Ã½Â¼ÂºÃ€Ãš
+																									// ÃÂ¤Ã€Ã‡.
 	{
 		super(name, num, major, grade, score);
 		if (checkType(type))
