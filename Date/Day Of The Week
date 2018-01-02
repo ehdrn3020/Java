@@ -1,0 +1,8 @@
+###Day of the week###
+
+String[] weekDay = { "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" };     
+Calendar cal = Calendar.getInstance(); 
+int num = cal.get(Calendar.DAY_OF_WEEK)-1; 
+String today = weekDay[num]; 
+System.out.println(num); 
+System.out.println("오늘의 요일 : " + today ); 
